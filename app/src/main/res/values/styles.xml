@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Used in toolbar-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!-- Used in toolbar-->
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <!-- Used in toolbar-->
+    <style name="AppTheme.TextLay" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- AlertDialogTheme -->
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--item RadioButton or CheckBox color-->
+        <!--<item name="colorControlNormal">@android:color/white</item>-->
+        <item name="colorControlActivated">@color/dialogAccent</item>
+        <!--item text color-->
+        <!--<item name="textColorAlertDialogListItem">@android:color/white</item>-->
+        <!--buttons color-->
+        <item name="colorAccent">@color/dialogAccent</item>
+        <!--title and message color-->
+        <!--<item name="android:textColorPrimary">@android:color/white</item>-->
+        <!--dialog background-->
+        <!--<item name="android:windowBackground">@drawable/background_dialog</item>-->
+    </style>
+
+    <style name="FrescoCommonStyle">
+        <item name="placeholderImageScaleType">centerCrop</item>
+        <item name="actualImageScaleType">centerCrop</item>
+    </style>
+
+    <style name="FrescoAccountStyle" parent="FrescoCommonStyle">
+        <item name="placeholderImage">@drawable/ic_nav_default_account</item>
+        <item name="roundAsCircle">true</item>
+        <item name="roundingBorderColor">@color/white</item>
+        <item name="roundingBorderWidth">2dp</item>
+    </style>
+
+</resources>

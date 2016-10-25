@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" android:id="@+id/group_one">
+        <item
+            android:id="@+id/nat_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/home_page" />
+        <item
+            android:id="@+id/nav_vip"
+            android:icon="@drawable/ic_nav_vip"
+            android:title="@string/my_vip" />
+        <item
+            android:id="@+id/nav_download"
+            android:icon="@drawable/ic_file_download_black_24dp"
+            android:title="@string/off_line_download" />
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/group_two">
+        <item
+            android:id="@+id/nav_collect"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:title="@string/my_collect" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="@string/history_record" />
+        <item
+            android:id="@+id/nav_friends"
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="@string/friends" />
+        <item
+            android:id="@+id/nav_purse"
+            android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+            android:title="@string/my_purse" />
+    </group>
+
+
+    <group android:checkableBehavior="single" >
+        <item
+            android:id="@+id/nav_theme_choose"
+            android:icon="@drawable/ic_color_lens_black_24dp"
+            android:title="@string/theme_choose" />
+        <item
+            android:id="@+id/nav_recommend"
+            android:icon="@drawable/ic_shop_black_24dp"
+            android:title="@string/recommend" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/settings" />
+    </group>
+
+</menu>

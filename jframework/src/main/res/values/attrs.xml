@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--SwipeBackLayoutStyle-->
+    <declare-styleable name="SwipeBackLayout">
+        <attr name="edge_size" format="dimension" />
+        <attr name="edge_flag">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="all" value="3" />
+        </attr>
+        <attr name="shadow_left" format="reference" />
+        <attr name="shadow_right" format="reference" />
+        <attr name="shadow_bottom" format="reference" />
+    </declare-styleable>
+    <attr name="SwipeBackLayoutStyle" format="reference" />
+
+    <!--CircleImageView-->
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <!--SlideMenu-->
+    <declare-styleable name="SlideMenu">
+        <attr name="rightPadding" format="dimension" />
+    </declare-styleable>
+    <!--UltimateListView-->
+    <declare-styleable name="UltimateListView">
+        <attr name="dividerHeight" format="dimension" />
+        <attr name="dividerDrawable" format="reference" />
+        <attr name="hasLoadingFooter" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TasksCompletedView">
+        <attr name="radius" format="dimension" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="circleColor" format="color" />
+        <attr name="ringColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ProgressImageView">
+        <attr name="ringWidth" format="dimension" />
+        <attr name="ringBorderColor" format="color" />
+        <attr name="ringDefaultColor" format="color" />
+        <attr name="ringMaxProgress" format="integer" />
+        <attr name="ringProgress" format="integer" />
+    </declare-styleable>
+
+    <!--UltimateGridView-->
+    <declare-styleable name="UltimateGridView">
+        <attr name="columnNum" format="integer" />
+        <attr name="columnWidth" format="dimension" />
+
+        <attr name="horizontalSpacing" format="dimension" />
+        <attr name="verticalSpacing" format="dimension" />
+    </declare-styleable>
+
+    <!--LikeButton-->
+    <declare-styleable name="LikeButton">
+        <attr name="icon_type" format="string" />
+        <attr name="icon_size" format="dimension|reference" />
+        <attr name="like_drawable" format="reference" />
+        <attr name="unlike_drawable" format="reference" />
+        <attr name="dots_primary_color" format="color|reference" />
+        <attr name="dots_secondary_color" format="color|reference" />
+        <attr name="circle_start_color" format="color|reference" />
+        <attr name="circle_end_color" format="color|reference" />
+        <attr name="liked" format="boolean" />
+        <attr name="enabled" format="boolean" />
+        <attr name="anim_scale_factor" format="float" />
+    </declare-styleable>
+
+    <!--TextProgressBar-->
+    <declare-styleable name="TextProgressBar">
+        <attr name="before_color" format="color" />
+        <attr name="after_color" format="color" />
+        <attr name="before_height" format="dimension" />
+        <attr name="after_height" format="dimension" />
+        <attr name="text_size" format="dimension" />
+        <attr name="text_color" format="color" />
+        <attr name="text_offset" format="dimension" />
+    </declare-styleable>
+
+</resources>

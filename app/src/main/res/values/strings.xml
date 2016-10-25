@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">PiliDemo</string>
+
+    <string name="guide_start">进入新世界</string>
+
+    <!-- home -->
+
+    <string name="tip_restart_app" >此操作将重新启动应用程序！</string>
+    <string name="switch_to_day_mode">白天模式</string>
+    <string name="switch_to_night_mode">夜晚模式</string>
+
+    <!--  Navigation Drawer -->
+    <string name="home_drawer_open">Open drawer</string>
+    <string name="home_drawer_close">Close drawer</string>
+    <string name="not_logged_in">未登录</string>
+    <string name="vip_limit">会员</string>
+    <string name="home_page">首页</string>
+    <string name="my_vip">我的会员</string>
+    <string name="off_line_download">离线缓存</string>
+    <string name="my_collect">我的收藏</string>
+    <string name="history_record">历史记录</string>
+    <string name="friends">关注的人</string>
+    <string name="my_purse">我的钱包</string>
+    <string name="settings">设置与帮助</string>
+    <string name="recommend">应用推荐</string>
+    <string name="theme_choose">主题选择</string>
+    <string name="default_limit">Lv0</string>
+    <string name="default_coin">硬币：0</string>
+
+    <!-- common -->
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="toolbar_search">搜索</string>
+    <string name="toolbar_download">下载</string>
+</resources>
