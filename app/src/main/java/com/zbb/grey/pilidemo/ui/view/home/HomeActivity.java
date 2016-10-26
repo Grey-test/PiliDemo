@@ -1,10 +1,9 @@
 package com.zbb.grey.pilidemo.ui.view.home;
 
 import android.content.Intent;
+import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -29,6 +28,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 import static com.zbb.grey.pilidemo.R.id.toolbar;
 
@@ -36,7 +36,7 @@ import static com.zbb.grey.pilidemo.R.id.toolbar;
  * Created by jumook on 2016/10/25.
  */
 
-public class HomeActivity extends AppBaseActivity implements NavigationView.OnNavigationItemSelectedListener, IHomeView {
+public class HomeActivity extends AppBaseActivity implements NavigationView.OnNavigationItemSelectedListener, HomeViewPort, View.OnClickListener {
 
     public static final String TAG = "HomeActivity";
 
@@ -46,6 +46,12 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
     NavigationView mNavView;
     @Bind(R.id.home_drawer_layout)
     DrawerLayout mDrawerLayout;
+    @Bind(R.id.toolbar_left_btn)
+    ImageView toolbarLeftBtn;
+    @Bind(R.id.toolbar_avatar)
+    SimpleDraweeView toolbarAvatar;
+    @Bind(R.id.toolbar_title)
+    TextView toolbarTitle;
 
     private ActionBarDrawerToggle mToggle;
 
@@ -79,13 +85,17 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
     @Override
     protected void initialization() {
         homePresenter = new HomePresenter(this, this);
-
-        MenuItem localLibraryMenu = mNavView.getMenu().findItem(R.id.nat_home);
+        //移除滚动条
+        NavigationMenuView navigationMenuView = (NavigationMenuView) mNavView.getChildAt(0);
+        if (navigationMenuView != null) {
+            navigationMenuView.setVerticalScrollBarEnabled(false);
+        }
+        //设置菜单默认选中
+        MenuItem localLibraryMenu = mNavView.getMenu().findItem(R.id.nav_home);
         onNavigationItemSelected(localLibraryMenu);
         localLibraryMenu.setChecked(true);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.home_drawer_open, R.string.home_drawer_close);
-        mToolbar.setLogo(R.drawable.ic_defualt_avatar_1);
-        mToolbar.setTitle("  格雷D奈尔");
+        mToolbar.setNavigationIcon(R.drawable.ic_drawer_home);
         setSupportActionBar(mToolbar);
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
@@ -94,12 +104,19 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
 
     @Override
     protected void bindEvent() {
+        mAccountAvatar.setOnClickListener(this);
+        mMessage.setOnClickListener(this);
+        mSwitchPattern.setOnClickListener(this);
 
+        mDrawerLayout.addDrawerListener(mToggle);
+//        updateDrawerToggle();
+        mNavView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     protected void doMoreInOnCreate() {
-        homePresenter.setIsFirstLogin();
+        //根据本地数据初始化界面
+        homePresenter.initViewWithNative();
     }
 
     @Override
@@ -121,6 +138,24 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
         EventBus.getDefault().unregister(this);
     }
 
+    @OnClick({R.id.toolbar_left_btn, R.id.toolbar_avatar, R.id.toolbar_title})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.nav_header_avatar:
+                break;
+            case R.id.nav_message:
+                break;
+            case R.id.nav_switch_pattern:
+                homePresenter.switchDayNightMode(HomeActivity.this, getDialogBuilder());
+                break;
+            case R.id.toolbar_left_btn:
+            case R.id.toolbar_avatar:
+            case R.id.toolbar_title:
+                mDrawerLayout.openDrawer(mNavView);
+                break;
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onReceive(String s) {
         JLog.w("EventBus test", s);
@@ -132,10 +167,13 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
             mDrawerLayout.closeDrawer(GravityCompat.START);
             return;
         }
+        if (!homePresenter.checkCurrentView()) {
+            mNavView.getMenu().getItem(0).setChecked(true);
+            homePresenter.navigationItemSelected(mNavView.getMenu().getItem(0), mSupportFragmentManager);
+            return;
+        }
         if (mSupportFragmentManager.getBackStackEntryCount() > 0) {
             mSupportFragmentManager.popBackStack();
-        } else if (false) {
-            IntentHelper.showLauncher(this);
         } else {
             super.onBackPressed();
         }
@@ -150,7 +188,7 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_share:
+            case R.id.action_download:
 
                 return true;
             case R.id.action_search:
@@ -160,39 +198,35 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        homePresenter.refreshToolbarMenu(menu);
+        return super.onPrepareOptionsMenu(menu);
+    }
 
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
         mDrawerLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
-                homePresenter.navigationItemSelected(item);
+                homePresenter.navigationItemSelected(item, mSupportFragmentManager);
             }
         }, 300);
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private final FragmentManager.OnBackStackChangedListener mBackStackChangedListener = new FragmentManager.OnBackStackChangedListener() {
-        @Override
-        public void onBackStackChanged() {
-            if (mToggle == null) {
-                return;
-            }
-            boolean isRoot = mSupportFragmentManager.getBackStackEntryCount() == 0;
-            mToggle.setDrawerIndicatorEnabled(isRoot);
-
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setDisplayShowHomeEnabled(!isRoot);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(!isRoot);
-                getSupportActionBar().setHomeButtonEnabled(!isRoot);
-            }
-            if (isRoot) {
-                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-                mToggle.syncState();
-            }
+    @Override
+    public void initViewWithNative(boolean isNightMode) {
+        if (isNightMode) {
+            mSwitchPattern.setImageResource(R.drawable.ic_switch_night);
+        } else {
+            mSwitchPattern.setImageResource(R.drawable.ic_switch_daily);
         }
-    };
+        //初始化默认为HomeFragment
+        mNavView.getMenu().getItem(0).setChecked(true);
+        homePresenter.navigationItemSelected(mNavView.getMenu().getItem(0), mSupportFragmentManager);
+    }
 
     @Override
     public void switchDayNightMode() {
@@ -207,18 +241,46 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
     }
 
     @Override
-    public void replaceFragment(Fragment fragment, String tag) {
-        FragmentTransaction transaction = mSupportFragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.fragment_enter, 0, 0, R.anim.fragment_pop_exit);
-        transaction.replace(R.id.home_fragment_container, fragment, tag).commit();
+    public void refreshFragment(boolean isReplace) {
+        if (!isReplace) {
+            mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        }
+        invalidateOptionsMenu();
     }
 
     @Override
-    public void addFragment(Fragment fragment, String tag) {
-        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        FragmentTransaction transaction = mSupportFragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.fragment_enter, 0, 0, R.anim.fragment_pop_exit);
-        transaction.replace(R.id.home_fragment_container, fragment, tag).addToBackStack(null).commit();
+    public void refreshToolbar(int id) {
+        switch (id) {
+            case R.id.nav_home:
+                mToolbar.setTitle("");
+                break;
+            case R.id.nav_collect:
+                mToolbar.setTitle("我的收藏");
+                break;
+            case R.id.nav_friends:
+                mToolbar.setTitle("关注的人");
+                break;
+            case R.id.nav_purse:
+                mToolbar.setTitle("我的钱包");
+                break;
+            case R.id.nav_theme_choose:
+                mToolbar.setTitle("主题选择");
+                break;
+            case R.id.nav_history:
+                mToolbar.setTitle("历史记录");
+                break;
+        }
+        if (id == R.id.nav_home) {
+            mToolbar.setNavigationIcon(null);
+            toolbarLeftBtn.setVisibility(View.VISIBLE);
+            toolbarAvatar.setVisibility(View.VISIBLE);
+            toolbarTitle.setVisibility(View.VISIBLE);
+        } else {
+            mToolbar.setNavigationIcon(R.drawable.ic_navigation_drawer);
+            toolbarLeftBtn.setVisibility(View.GONE);
+            toolbarAvatar.setVisibility(View.GONE);
+            toolbarTitle.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -233,5 +295,30 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
 //        startActivity(new Intent(this, SearchActivity.class));
     }
 
+    private final FragmentManager.OnBackStackChangedListener mBackStackChangedListener = new FragmentManager.OnBackStackChangedListener() {
+        @Override
+        public void onBackStackChanged() {
+            updateDrawerToggle();
+        }
+    };
+
+    //更新DrawerToggle控件
+    private void updateDrawerToggle() {
+        if (mToggle == null) {
+            return;
+        }
+        boolean isRoot = mSupportFragmentManager.getBackStackEntryCount() == 0;
+        mToggle.setDrawerIndicatorEnabled(isRoot);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(!isRoot);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(!isRoot);
+            getSupportActionBar().setHomeButtonEnabled(!isRoot);
+        }
+        if (isRoot) {
+            mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            mToggle.syncState();
+        }
+    }
 
 }

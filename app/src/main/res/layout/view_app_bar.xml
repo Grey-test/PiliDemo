@@ -12,7 +12,40 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:titleTextAppearance="@style/AppTheme.TextLay"
         android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title=""
+        app:titleTextAppearance="@style/AppTheme.TextLay">
+
+        <ImageView
+            android:id="@+id/toolbar_left_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_drawer_home" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/toolbar_avatar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="10dp"
+            android:src="@color/white"
+            app:failureImage="@color/white"
+            app:failureImageScaleType="centerCrop"
+            app:placeholderImage="@color/white"
+            app:placeholderImageScaleType="fitXY"
+            app:roundAsCircle="true" />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="哔哩哔哩"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </android.support.v7.widget.Toolbar>
+
 </android.support.design.widget.AppBarLayout>

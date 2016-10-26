@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4b4b4b</color>
+    <color name="colorPrimaryDark">#3b3b3b</color>
+    <color name="colorAccent">#ffffff</color>
+    <color name="colorPrimaryLight">#CFD8DC</color>
+    <color name="colorPrimaryText">#e1e1e1</color>
+    <color name="colorSecondaryText">#a4d2d2d2</color>
+    <color name="inversePrimaryText">#212121</color>
+    <color name="inverseSecondaryText">#727272</color>
+    <color name="colorDivider">#b4939393</color>
+    <color name="colorRipple">#3b3b3b</color>
+    <color name="dialogAccent">#3b3b3b</color>
+
+    <color name="theme_color">#4b4b4b</color>
+    <color name="theme_dark_color">#3b3b3b</color>
+
+    <!--PlayControlFragment-->
+    <color name="controlBarBg">#393939</color>
+
+    <!--LibraryPlaylistFragment-->
+    <color name="textLabelBg">#a6a6a6</color>
+
+    <drawable name="colorPrimaryCard">@color/colorPrimary</drawable>
+</resources>

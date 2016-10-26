@@ -6,8 +6,8 @@
     <!-- home -->
 
     <string name="tip_restart_app" >此操作将重新启动应用程序！</string>
-    <string name="switch_to_day_mode">白天模式</string>
-    <string name="switch_to_night_mode">夜晚模式</string>
+    <string name="switch_to_day_mode">白间模式</string>
+    <string name="switch_to_night_mode">夜间模式</string>
 
     <!--  Navigation Drawer -->
     <string name="home_drawer_open">Open drawer</string>
@@ -32,4 +32,6 @@
     <string name="no">否</string>
     <string name="toolbar_search">搜索</string>
     <string name="toolbar_download">下载</string>
+    <string name="toolbar_game">游戏中心</string>
+    <string name="toolbar_clear">清空</string>
 </resources>
