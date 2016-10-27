@@ -9,7 +9,6 @@ import com.jstudio.utils.PreferencesUtils;
 import com.zbb.grey.pilidemo.R;
 import com.zbb.grey.pilidemo.base.AppBaseActivity;
 import com.zbb.grey.pilidemo.constant.AppConstant;
-import com.zbb.grey.pilidemo.ui.view.home.HomeActivity;
 
 
 /**
@@ -38,7 +37,7 @@ public class SplashActivity extends AppBaseActivity {
         if (isFirstLogin) {
             openActivity(new Intent(SplashActivity.this, GuidePageActivity.class));
         } else {
-            openActivity(new Intent(SplashActivity.this, HomeActivity.class));
+            openActivity(new Intent(SplashActivity.this, LoginActivity.class));
         }
     }
 

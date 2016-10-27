@@ -5,7 +5,7 @@
 
     <!-- home -->
 
-    <string name="tip_restart_app" >此操作将重新启动应用程序！</string>
+    <string name="tip_restart_app">此操作将重新启动应用程序！</string>
     <string name="switch_to_day_mode">白间模式</string>
     <string name="switch_to_night_mode">夜间模式</string>
 
@@ -34,4 +34,13 @@
     <string name="toolbar_download">下载</string>
     <string name="toolbar_game">游戏中心</string>
     <string name="toolbar_clear">清空</string>
+    <string name="toolbar_forget">忘记密码?</string>
+
+    <!-- login in -->
+    <string name="login_toolbar_title">登录</string>
+    <string name="login_in">登录</string>
+    <string name="login_accounts">注册帐号</string>
+    <string name="user_account">你的手机号/邮箱</string>
+    <string name="user_password">请输入密码</string>
+
 </resources>

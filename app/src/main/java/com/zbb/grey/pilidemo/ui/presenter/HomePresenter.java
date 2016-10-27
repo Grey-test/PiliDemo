@@ -8,10 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.view.Menu;
 import android.view.MenuItem;
 
-import com.jstudio.utils.JLog;
 import com.jstudio.utils.PreferencesUtils;
 import com.zbb.grey.pilidemo.R;
 import com.zbb.grey.pilidemo.base.GlobalVar;
@@ -133,34 +131,14 @@ public class HomePresenter {
     }
 
 
-    public void refreshToolbarMenu(Menu menu) {
-        JLog.d("tag", "menuId = " + mHomeModel.getCurrentMenuItemId());
-        switch (mHomeModel.getCurrentMenuItemId()) {
-            case R.id.nav_home:
-                menu.findItem(R.id.action_game).setVisible(true);
-                menu.findItem(R.id.action_download).setVisible(true);
-                menu.findItem(R.id.action_search).setVisible(true);
-                menu.findItem(R.id.action_clear).setVisible(false);
-                break;
-            case R.id.nav_collect:
-            case R.id.nav_friends:
-            case R.id.nav_purse:
-            case R.id.nav_theme_choose:
-                menu.findItem(R.id.action_game).setVisible(false);
-                menu.findItem(R.id.action_download).setVisible(true);
-                menu.findItem(R.id.action_search).setVisible(true);
-                menu.findItem(R.id.action_clear).setVisible(false);
-                break;
-            case R.id.nav_history:
-                menu.findItem(R.id.action_game).setVisible(false);
-                menu.findItem(R.id.action_download).setVisible(false);
-                menu.findItem(R.id.action_search).setVisible(false);
-                menu.findItem(R.id.action_clear).setVisible(true);
-                break;
-        }
-        mHomeView.refreshToolbar(mHomeModel.getCurrentMenuItemId());
+    /**
+     * 获取菜单的ID
+     *
+     * @return menuId
+     */
+    public int getCurrentMenuId() {
+        return mHomeModel.getCurrentMenuItemId();
     }
-
 
     /**
      * 日夜间模式切换
@@ -205,6 +183,13 @@ public class HomePresenter {
         } else {
             mHomeView.lowSearchSkip();
         }
+    }
+
+    /**
+     * 头像点击事件
+     */
+    private void onClickAvatar() {
+
     }
 
 }

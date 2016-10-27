@@ -142,6 +142,7 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.nav_header_avatar:
+
                 break;
             case R.id.nav_message:
                 break;
@@ -188,6 +189,9 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_game:
+
+                break;
             case R.id.action_download:
 
                 return true;
@@ -200,7 +204,60 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        homePresenter.refreshToolbarMenu(menu);
+        switch (homePresenter.getCurrentMenuId()) {
+            case R.id.nav_home:
+                menu.findItem(R.id.action_game).setVisible(true);
+                menu.findItem(R.id.action_download).setVisible(true);
+                menu.findItem(R.id.action_search).setVisible(true);
+                menu.findItem(R.id.action_clear).setVisible(false);
+                break;
+            case R.id.nav_collect:
+            case R.id.nav_friends:
+            case R.id.nav_purse:
+            case R.id.nav_theme_choose:
+                menu.findItem(R.id.action_game).setVisible(false);
+                menu.findItem(R.id.action_download).setVisible(true);
+                menu.findItem(R.id.action_search).setVisible(true);
+                menu.findItem(R.id.action_clear).setVisible(false);
+                break;
+            case R.id.nav_history:
+                menu.findItem(R.id.action_game).setVisible(false);
+                menu.findItem(R.id.action_download).setVisible(false);
+                menu.findItem(R.id.action_search).setVisible(false);
+                menu.findItem(R.id.action_clear).setVisible(true);
+                break;
+        }
+        switch (homePresenter.getCurrentMenuId()) {
+            case R.id.nav_home:
+                mToolbar.setTitle("");
+                break;
+            case R.id.nav_collect:
+                mToolbar.setTitle("我的收藏");
+                break;
+            case R.id.nav_friends:
+                mToolbar.setTitle("关注的人");
+                break;
+            case R.id.nav_purse:
+                mToolbar.setTitle("我的钱包");
+                break;
+            case R.id.nav_theme_choose:
+                mToolbar.setTitle("主题选择");
+                break;
+            case R.id.nav_history:
+                mToolbar.setTitle("历史记录");
+                break;
+        }
+        if (homePresenter.getCurrentMenuId() == R.id.nav_home) {
+            mToolbar.setNavigationIcon(null);
+            toolbarLeftBtn.setVisibility(View.VISIBLE);
+            toolbarAvatar.setVisibility(View.VISIBLE);
+            toolbarTitle.setVisibility(View.VISIBLE);
+        } else {
+            mToolbar.setNavigationIcon(R.drawable.ic_navigation_drawer);
+            toolbarLeftBtn.setVisibility(View.GONE);
+            toolbarAvatar.setVisibility(View.GONE);
+            toolbarTitle.setVisibility(View.GONE);
+        }
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -246,41 +303,6 @@ public class HomeActivity extends AppBaseActivity implements NavigationView.OnNa
             mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         }
         invalidateOptionsMenu();
-    }
-
-    @Override
-    public void refreshToolbar(int id) {
-        switch (id) {
-            case R.id.nav_home:
-                mToolbar.setTitle("");
-                break;
-            case R.id.nav_collect:
-                mToolbar.setTitle("我的收藏");
-                break;
-            case R.id.nav_friends:
-                mToolbar.setTitle("关注的人");
-                break;
-            case R.id.nav_purse:
-                mToolbar.setTitle("我的钱包");
-                break;
-            case R.id.nav_theme_choose:
-                mToolbar.setTitle("主题选择");
-                break;
-            case R.id.nav_history:
-                mToolbar.setTitle("历史记录");
-                break;
-        }
-        if (id == R.id.nav_home) {
-            mToolbar.setNavigationIcon(null);
-            toolbarLeftBtn.setVisibility(View.VISIBLE);
-            toolbarAvatar.setVisibility(View.VISIBLE);
-            toolbarTitle.setVisibility(View.VISIBLE);
-        } else {
-            mToolbar.setNavigationIcon(R.drawable.ic_navigation_drawer);
-            toolbarLeftBtn.setVisibility(View.GONE);
-            toolbarAvatar.setVisibility(View.GONE);
-            toolbarTitle.setVisibility(View.GONE);
-        }
     }
 
     @Override

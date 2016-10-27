@@ -17,8 +17,6 @@ public interface HomeViewPort {
 
     void refreshFragment(boolean isReplace);
 
-    void refreshToolbar(int id);
-
     void highSearchSkip();
 
     void lowSearchSkip();

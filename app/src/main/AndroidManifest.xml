@@ -53,6 +53,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme" />
 
+
+        <!-- 登录界面 -->
+        <activity
+            android:name=".ui.view.other.LoginActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/HomeTheme" />
+
         <!-- 主界面 -->
         <activity
             android:name=".ui.view.home.HomeActivity"

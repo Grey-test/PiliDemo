@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color_one"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:theme="@style/ToolbarTheme.Menu"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:titleTextAppearance="@style/ToolbarTheme.TextLay" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:id="@+id/image_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_22" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_bili_logo" />
+
+        <ImageView
+            android:id="@+id/image_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_33" />
+
+    </RelativeLayout>
+
+    <com.zbb.grey.pilidemo.ui.widge.TintEditText
+        android:id="@+id/login_user"
+        style="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/ic_login_username_default"
+        android:drawablePadding="15dp"
+        android:focusable="true"
+        android:hint="@string/user_account"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textSize="14sp" />
+
+    <com.zbb.grey.pilidemo.ui.widge.TintEditText
+        android:id="@+id/login_password"
+        style="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawableLeft="@drawable/ic_login_password_default"
+        android:drawablePadding="15dp"
+        android:hint="@string/user_password"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:password="true"
+        android:textSize="14sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/login_account"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_raw_border_theme_selector"
+            android:text="@string/login_accounts"
+            android:textColor="@color/btn_theme_text_selector" />
+
+        <Button
+            android:id="@+id/login_in"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_raw_theme_selector"
+            android:enabled="false"
+            android:text="@string/login_in"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
