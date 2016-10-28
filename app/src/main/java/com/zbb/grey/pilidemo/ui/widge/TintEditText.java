@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.zbb.grey.pilidemo.R;
-import com.zbb.grey.pilidemo.bridge.OnTextChangeListener;
 
 /**
  * 左侧Item自动着色为主题色
@@ -149,11 +148,19 @@ public class TintEditText extends AppCompatEditText implements View.OnFocusChang
                 getCompoundDrawables()[1], right, getCompoundDrawables()[3]);
     }
 
+    public interface OnFocusChangeListener {
+        void onFocusChange(View v, boolean hasFocus);
+    }
+
     public void setOnFocusChangeListener(OnFocusChangeListener onFocusChangeListener) {
         this.onFocusChangeListener = onFocusChangeListener;
     }
 
     public void setOnTextChangeListener(OnTextChangeListener onTextChangeListener) {
         this.onTextChangeListener = onTextChangeListener;
+    }
+
+    public interface OnTextChangeListener {
+        void onTextChanged(CharSequence s);
     }
 }

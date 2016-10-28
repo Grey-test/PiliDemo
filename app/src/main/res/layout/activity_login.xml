@@ -44,7 +44,7 @@
 
     </RelativeLayout>
 
-    <com.zbb.grey.pilidemo.ui.widge.TintAutoCompleteText
+    <com.zbb.grey.pilidemo.ui.widge.TintEditText
         android:id="@+id/login_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,6 +58,7 @@
         android:paddingBottom="10dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
+        android:singleLine="true"
         android:textCursorDrawable="@drawable/cursor_grey_bg"
         android:textSize="14sp" />
 
@@ -83,6 +84,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:password="true"
+        android:singleLine="true"
         android:textCursorDrawable="@drawable/cursor_grey_bg"
         android:textSize="14sp" />
 

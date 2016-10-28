@@ -8,11 +8,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.zbb.grey.pilidemo.R;
-import com.zbb.grey.pilidemo.adapter.UserNameAdapter;
 import com.zbb.grey.pilidemo.base.AppBaseActivity;
-import com.zbb.grey.pilidemo.bridge.OnTextChangeListener;
 import com.zbb.grey.pilidemo.ui.presenter.LoginPresenter;
-import com.zbb.grey.pilidemo.ui.widge.TintAutoCompleteText;
+import com.zbb.grey.pilidemo.ui.view.home.HomeActivity;
 import com.zbb.grey.pilidemo.ui.widge.TintEditText;
 
 import butterknife.Bind;
@@ -37,7 +35,7 @@ public class LoginActivity extends AppBaseActivity implements LoginViewPort, Tin
     @Bind(R.id.image_right)
     ImageView imageRight;
     @Bind(R.id.login_user)
-    TintAutoCompleteText loginUser;
+    TintEditText loginUser;
     @Bind(R.id.login_user_line)
     View userLine;
     @Bind(R.id.login_password)
@@ -50,7 +48,6 @@ public class LoginActivity extends AppBaseActivity implements LoginViewPort, Tin
     Button loginIn;
 
     private LoginPresenter loginPresenter;
-    private UserNameAdapter mUserAdapter;
 
     @Override
     protected void setContentView() {
@@ -65,8 +62,6 @@ public class LoginActivity extends AppBaseActivity implements LoginViewPort, Tin
         toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
         setSupportActionBar(toolbar);
 
-        mUserAdapter = new UserNameAdapter(this, loginPresenter.getUserNameList());
-        loginUser.setAdapter(mUserAdapter);
     }
 
     @Override
@@ -74,14 +69,14 @@ public class LoginActivity extends AppBaseActivity implements LoginViewPort, Tin
         loginUser.setOnFocusChangeListener(this);
         loginPassword.setOnFocusChangeListener(this);
 
-        loginUser.setOnTextChangeListener(new OnTextChangeListener() {
+        loginUser.setOnTextChangeListener(new TintEditText.OnTextChangeListener() {
             @Override
             public void onTextChanged(CharSequence s) {
                 loginPresenter.checkLoginInState(true, s, "");
             }
         });
 
-        loginPassword.setOnTextChangeListener(new OnTextChangeListener() {
+        loginPassword.setOnTextChangeListener(new TintEditText.OnTextChangeListener() {
             @Override
             public void onTextChanged(CharSequence s) {
                 loginPresenter.checkLoginInState(false, "", s);
@@ -112,9 +107,11 @@ public class LoginActivity extends AppBaseActivity implements LoginViewPort, Tin
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_account:
-
+                openActivityWithBundle(RegisterActivity.class, null);
                 break;
             case R.id.login_in:
+                showProgressDialog(getString(R.string.opt_logining), true);
+                loginPresenter.VerifyLogin();
                 break;
         }
     }
@@ -140,13 +137,21 @@ public class LoginActivity extends AppBaseActivity implements LoginViewPort, Tin
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void setLoginInStatue(boolean isTrue) {
         if (isTrue) {
             loginIn.setEnabled(true);
         } else {
             loginIn.setEnabled(false);
+        }
+    }
+
+    @Override
+    public void loginCallBack(String message, boolean isLogin) {
+        dismissProgressDialog();
+        showToast(message);
+        if (isLogin) {
+            openActivityWithBundle(HomeActivity.class, null);
         }
     }
 }

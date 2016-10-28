@@ -34,7 +34,7 @@
     <string name="toolbar_download">下载</string>
     <string name="toolbar_game">游戏中心</string>
     <string name="toolbar_clear">清空</string>
-    <string name="toolbar_forget">忘记密码?</string>
+    <string name="cancel">取消</string>
 
     <!-- login in -->
     <string name="login_toolbar_title">登录</string>
@@ -42,8 +42,16 @@
     <string name="login_accounts">注册帐号</string>
     <string name="user_account">你的手机号/邮箱</string>
     <string name="user_password">请输入密码</string>
+    <string name="toolbar_forget">忘记密码?</string>
+    <string name="opt_logining">登录中...</string>
+
+    <!-- register account -->
     <string name="register_input_phone">请确认你的国家或地区并输入手机号</string>
     <string name="register_default_area">中国大陆</string>
     <string name="register_default_area_code">+86</string>
+    <string name="register_get_code">获取验证码</string>
+    <string name="register_agreement">点击\"获取验证码\"按钮，即表示同意注册协议</string>
+    <string name="register_toolbar_name">注册帐号</string>
+
 
 </resources>

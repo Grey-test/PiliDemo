@@ -1,6 +1,7 @@
 package com.zbb.grey.pilidemo.ui.presenter;
 
 import android.app.Activity;
+import android.os.Handler;
 import android.text.TextUtils;
 
 import com.jstudio.utils.PreferencesUtils;
@@ -48,11 +49,30 @@ public class LoginPresenter {
         }
     }
 
+    /**
+     * 获取登录过的用户帐号
+     *
+     * @return List<String></>
+     */
     public List<String> getUserNameList() {
         return loginModel.getUserNameList(preferences.getSet(AppConstant.LOGIN_USER_NAME_LIST, null));
     }
 
-    public void saveUserName() {
+
+    /**
+     * 模拟登录接口
+     */
+    public void VerifyLogin() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (loginModel.getUserName().equals("15000000000") && loginModel.getPassword().equals("123456")) {
+                    loginViewPort.loginCallBack("登录成功", true);
+                } else {
+                    loginViewPort.loginCallBack("用户或密码错误", false);
+                }
+            }
+        }, 3 * 1000);
     }
 
 

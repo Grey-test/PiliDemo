@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color_one"
@@ -18,21 +19,25 @@
         app:titleTextAppearance="@style/ToolbarTheme.TextLay" />
 
     <TextView
+        android:id="@+id/hint_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="15dp"
         android:text="@string/register_input_phone"
         android:textColor="@color/black_tf_3d" />
 
     <TextView
-        android:id="@+id/login_user"
+        android:id="@+id/area_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="16dp"
         android:drawableRight="@drawable/ic_gray_arrow_right"
-        android:paddingBottom="10dp"
+        android:paddingBottom="20dp"
         android:text="@string/register_default_area"
         android:textColor="@color/theme_color"
         android:textSize="14sp" />
@@ -42,7 +47,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/under_tint_grey_line" />
+        android:background="@color/under_light_grey_line" />
 
 
     <LinearLayout
@@ -50,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="25dp">
 
 
         <TextView
@@ -58,10 +63,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register_default_area_code"
-            android:textColor="@color/black_tf_6d" />
+            android:textColor="@color/black_tf_3d" />
 
-
-
+        <EditText
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:background="@null"
+            android:inputType="phone"
+            android:paddingBottom="16dp"
+            android:singleLine="true"
+            android:textColor="@color/black_tf_3d"
+            android:textCursorDrawable="@drawable/cursor_grey_bg"
+            android:textSize="14sp"
+            tools:text="1500000000" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/theme_color" />
+
+    <Button
+        android:id="@+id/get_code"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_raw_theme_selector"
+        android:text="@string/register_get_code"
+        android:textColor="@color/white" />
+
+    <com.zbb.grey.pilidemo.ui.widge.BrightTextView
+        android:id="@+id/item_agreement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/register_agreement"
+        android:textColor="@color/black_tf_9d"
+        android:textSize="13sp" />
+
 
 </LinearLayout>

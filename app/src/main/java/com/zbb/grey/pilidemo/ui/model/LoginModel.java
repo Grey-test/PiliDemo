@@ -45,9 +45,9 @@ public class LoginModel implements LoginModelPort {
     }
 
     @Override
-    public void putUserNamInList(String userName) {
-        if (!this.userNameList.contains(userName)) {
-            this.userNameList.add(userName);
+    public void putUserNamInList() {
+        if (!this.userNameList.contains(this.userName)) {
+            this.userNameList.add(this.userName);
         }
     }
 

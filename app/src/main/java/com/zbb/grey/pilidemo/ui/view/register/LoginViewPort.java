@@ -10,6 +10,6 @@ public interface LoginViewPort {
     void setLoginInStatue(boolean isTrue);
 
 
-
+    void loginCallBack(String message, boolean isLogin);
 
 }

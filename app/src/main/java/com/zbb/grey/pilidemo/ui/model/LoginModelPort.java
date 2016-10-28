@@ -19,6 +19,6 @@ public interface LoginModelPort {
 
     List<String> getUserNameList(Set<String> list);
 
-    void putUserNamInList(String userName);
+    void putUserNamInList();
 
 }
