@@ -42,5 +42,8 @@
     <string name="login_accounts">注册帐号</string>
     <string name="user_account">你的手机号/邮箱</string>
     <string name="user_password">请输入密码</string>
+    <string name="register_input_phone">请确认你的国家或地区并输入手机号</string>
+    <string name="register_default_area">中国大陆</string>
+    <string name="register_default_area_code">+86</string>
 
 </resources>

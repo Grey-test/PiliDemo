@@ -3,22 +3,22 @@ package com.zbb.grey.pilidemo.ui.widge;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 
 import com.zbb.grey.pilidemo.R;
 import com.zbb.grey.pilidemo.bridge.OnTextChangeListener;
 
 /**
- * 左侧Item自动着色为主题色
+ * 左侧Item自动着色为主题色，自带提示功能
  * Created by jumook on 2016/10/27.
  */
 
-public class TintEditText extends AppCompatEditText implements View.OnFocusChangeListener, TextWatcher {
+public class TintAutoCompleteText extends AutoCompleteTextView implements View.OnFocusChangeListener, TextWatcher {
 
 
     private Drawable drawableLeft;
@@ -32,17 +32,17 @@ public class TintEditText extends AppCompatEditText implements View.OnFocusChang
     private Drawable mClearDrawable;    //右边删除图片的Drawable资源
     private boolean hasFoucs;            //是否获得焦点
 
-    public TintEditText(Context context) {
+    public TintAutoCompleteText(Context context) {
         super(context);
         init();
     }
 
-    public TintEditText(Context context, AttributeSet attrs) {
+    public TintAutoCompleteText(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public TintEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TintAutoCompleteText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -153,7 +153,9 @@ public class TintEditText extends AppCompatEditText implements View.OnFocusChang
         this.onFocusChangeListener = onFocusChangeListener;
     }
 
+
     public void setOnTextChangeListener(OnTextChangeListener onTextChangeListener) {
         this.onTextChangeListener = onTextChangeListener;
     }
+
 }

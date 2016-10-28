@@ -3,6 +3,8 @@ package com.jstudio.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Set;
+
 /**
  * Created by Jason
  */
@@ -47,7 +49,11 @@ public class PreferencesUtils {
         return mEditor.putBoolean(key, value);
     }
 
-    public void apply(){
+    public SharedPreferences.Editor putSet(String key, Set<String> value) {
+        return mEditor.putStringSet(key, value);
+    }
+
+    public void apply() {
         this.mEditor.apply();
     }
 
@@ -69,6 +75,10 @@ public class PreferencesUtils {
 
     public boolean getBoolean(String key, boolean defValue) {
         return mPreference.getBoolean(key, defValue);
+    }
+
+    public Set<String> getSet(String key, Set<String> defValue) {
+        return mPreference.getStringSet(key, defValue);
     }
 
 }

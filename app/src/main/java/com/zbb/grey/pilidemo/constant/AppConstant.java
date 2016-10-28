@@ -13,4 +13,7 @@ public class AppConstant {
     public static final String APP_HAS_ADVERTISEMENT = "app_has_ad";
     public static final String APP_IS_NIGHT_MODE = "app_is_night_mode";
     public static final String APP_IS_REMOVE_AD = "app_is_remove_ad";
+    public static final String LOGIN_USER_NAME_LIST = "login_user_name_list";//用户帐号保存
+
+
 }

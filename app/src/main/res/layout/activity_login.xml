@@ -13,8 +13,8 @@
         android:background="?attr/colorPrimary"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
-        app:theme="@style/ToolbarTheme.Menu"
         app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:theme="@style/ToolbarTheme.Menu"
         app:titleTextAppearance="@style/ToolbarTheme.TextLay" />
 
     <RelativeLayout
@@ -44,50 +44,69 @@
 
     </RelativeLayout>
 
-    <com.zbb.grey.pilidemo.ui.widge.TintEditText
+    <com.zbb.grey.pilidemo.ui.widge.TintAutoCompleteText
         android:id="@+id/login_user"
-        style="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
+        android:background="@null"
         android:drawableLeft="@drawable/ic_login_username_default"
         android:drawablePadding="15dp"
         android:focusable="true"
         android:hint="@string/user_account"
+        android:paddingBottom="10dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
+        android:textCursorDrawable="@drawable/cursor_grey_bg"
         android:textSize="14sp" />
+
+    <View
+        android:id="@+id/login_user_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/theme_color" />
 
     <com.zbb.grey.pilidemo.ui.widge.TintEditText
         android:id="@+id/login_password"
-        style="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@null"
         android:drawableLeft="@drawable/ic_login_password_default"
         android:drawablePadding="15dp"
         android:hint="@string/user_password"
+        android:paddingBottom="10dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:password="true"
+        android:textCursorDrawable="@drawable/cursor_grey_bg"
         android:textSize="14sp" />
+
+    <View
+        android:id="@+id/login_password_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/under_grey_line" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/login_account"
             android:layout_width="0dp"
-            android:layout_height="38dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/btn_raw_border_theme_selector"
             android:text="@string/login_accounts"
@@ -96,7 +115,7 @@
         <Button
             android:id="@+id/login_in"
             android:layout_width="0dp"
-            android:layout_height="38dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:background="@drawable/btn_raw_theme_selector"

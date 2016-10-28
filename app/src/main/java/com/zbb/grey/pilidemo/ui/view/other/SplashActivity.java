@@ -9,6 +9,7 @@ import com.jstudio.utils.PreferencesUtils;
 import com.zbb.grey.pilidemo.R;
 import com.zbb.grey.pilidemo.base.AppBaseActivity;
 import com.zbb.grey.pilidemo.constant.AppConstant;
+import com.zbb.grey.pilidemo.ui.view.register.LoginActivity;
 
 
 /**
