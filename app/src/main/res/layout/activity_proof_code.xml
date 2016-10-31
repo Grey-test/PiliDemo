@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color_one"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:theme="@style/ToolbarTheme.Menu"
+        app:titleTextAppearance="@style/ToolbarTheme.TextLay" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/proof_rules_tip"
+        android:textColor="@color/black_tf_3d" />
+
+    <TextView
+        android:id="@+id/item_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black_tf_3d"
+        tools:text="+815000000000" />
+
+    <EditText
+        android:id="@+id/item_code"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/frame_grey_border_white_face_"
+        android:gravity="center"
+        android:hint="@string/proof_input_code"
+        android:inputType="numberDecimal"
+        android:maxLength="4"
+        android:textColorHint="@color/hint_tip_grey"
+        android:textCursorDrawable="@drawable/cursor_grey_bg"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/item_count_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:clickable="false"
+        android:enabled="false"
+        android:textColor="@color/btn_theme_grey_text_selector"
+        android:textSize="12sp"
+        tools:text="60秒后可重发" />
+
+    <Button
+        android:id="@+id/item_next"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_raw_theme_selector"
+        android:enabled="false"
+        android:text="@string/next"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>

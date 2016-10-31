@@ -70,6 +70,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/HomeTheme" />
 
+        <!-- 校对验证码界面 -->
+        <activity
+            android:name=".ui.view.register.ProofCodeActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/HomeTheme" />
+
         <!-- 主界面 -->
         <activity
             android:name=".ui.view.home.HomeActivity"

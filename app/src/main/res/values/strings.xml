@@ -46,12 +46,19 @@
     <string name="opt_logining">登录中...</string>
 
     <!-- register account -->
+    <string name="register_toolbar_name">注册帐号</string>
     <string name="register_input_phone">请确认你的国家或地区并输入手机号</string>
     <string name="register_default_area">中国大陆</string>
     <string name="register_default_area_code">+86</string>
     <string name="register_get_code">获取验证码</string>
     <string name="register_agreement">点击\"获取验证码\"按钮，即表示同意注册协议</string>
-    <string name="register_toolbar_name">注册帐号</string>
+
+    <!-- proof code  -->
+    <string name="proof_code_toolbar_name">验证手机号</string>
+    <string name="proof_rules_tip">验证码已发送到以下手机，请在5分钟内完成注册</string>
+    <string name="proof_input_code">请输入验证码</string>
+    <string name="next">下一步</string>
+    <string name="skip_error">数据有误...即将退出...</string>
 
 
 </resources>

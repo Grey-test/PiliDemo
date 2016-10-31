@@ -14,6 +14,14 @@ public interface RegisterModelPort {
 
     void setPhone(String phone);
 
+    String getCode();
+
+    void setCode(String code);
+
+    PhonePR getPhonePR();
+
+    void setPhonePR(PhonePR phonePR);
+
     List<PhonePR> getPhonePRList();
 
 }

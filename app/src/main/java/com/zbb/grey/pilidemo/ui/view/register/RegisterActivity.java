@@ -1,7 +1,11 @@
 package com.zbb.grey.pilidemo.ui.view.register;
 
 import android.app.Dialog;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,11 +18,8 @@ import com.jstudio.widget.dialog.DialogCreator;
 import com.zbb.grey.pilidemo.R;
 import com.zbb.grey.pilidemo.adapter.PhonePRAdapter;
 import com.zbb.grey.pilidemo.base.AppBaseActivity;
-import com.zbb.grey.pilidemo.ui.bean.PhonePR;
 import com.zbb.grey.pilidemo.ui.presenter.RegisterPresenter;
 import com.zbb.grey.pilidemo.ui.widge.BrightTextView;
-
-import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -33,6 +34,7 @@ import static com.zbb.grey.pilidemo.R.id.toolbar;
 public class RegisterActivity extends AppBaseActivity implements RegisterViewPort, View.OnClickListener {
 
     public static final String TAG = "RegisterActivity";
+
     @Bind(toolbar)
     Toolbar mToolbar;
     @Bind(R.id.hint_view)
@@ -49,7 +51,6 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
     BrightTextView mAgreementView;
 
     private Dialog mSingleDialog;
-    private TextView mSingleTitle;
     private ListView mSingleListView;
     private TextView mSingleCancel;
 
@@ -64,7 +65,7 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
     @Override
     protected void findViews() {
         View singleView = LayoutInflater.from(this).inflate(R.layout.dialog_single_selector, null);
-        mSingleTitle = (TextView) singleView.findViewById(R.id.single_title);
+        TextView mSingleTitle = (TextView) singleView.findViewById(R.id.single_title);
         mSingleListView = (ListView) singleView.findViewById(R.id.single_list);
         mSingleCancel = (TextView) singleView.findViewById(R.id.single_cancel);
         mSingleTitle.setText("地区选择");
@@ -79,7 +80,7 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
         setSupportActionBar(mToolbar);
         mAgreementView.setBrightTextsColor(getString(R.string.register_agreement), "注册协议", getResources().getColor(R.color.theme_color));
 
-        mPhoneAdapter = new PhonePRAdapter(this, new ArrayList<PhonePR>());
+        mPhoneAdapter = new PhonePRAdapter(this, registerPresenter.getPhonePRList());
         mSingleListView.setAdapter(mPhoneAdapter);
     }
 
@@ -93,17 +94,35 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
                 mSingleDialog.dismiss();
             }
         });
+
+        mUsesPhone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                registerPresenter.setGetCodeState(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
-
-    @OnClick({R.id.area_name, R.id.area_code})
+    @OnClick({R.id.area_name, R.id.get_code})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.area_name:
                 mPhoneAdapter.setData(registerPresenter.getPhonePRList());
                 mSingleDialog.show();
                 break;
-            case R.id.area_code:
+            case R.id.get_code:
+                showProgressDialog("正在请求验证验...", true);
+                registerPresenter.getCode();
                 break;
             case R.id.single_cancel:
                 mSingleDialog.dismiss();
@@ -116,4 +135,24 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
         mAreaName.setText(areaName);
         mAreaCode.setText(PR);
     }
+
+    @Override
+    public void setCodeState(boolean isTrue) {
+        if (isTrue) {
+            mGetCodeBtn.setEnabled(true);
+        } else {
+            mGetCodeBtn.setEnabled(false);
+        }
+    }
+
+    @Override
+    public void onCodeCallBack(String message, Bundle bundle) {
+        dismissProgressDialog();
+        if (TextUtils.isEmpty(message)) {
+            openActivityWithBundle(ProofCodeActivity.class, bundle);
+        } else {
+            showToast(message);
+        }
+    }
+
 }

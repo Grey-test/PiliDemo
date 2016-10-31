@@ -11,6 +11,8 @@ import java.util.List;
 public class RegisterModel implements RegisterModelPort {
 
     private String phone;
+    private String code;
+    private PhonePR currentPhonePR;
     private List<PhonePR> list;
 
     @Override
@@ -24,9 +26,30 @@ public class RegisterModel implements RegisterModelPort {
     }
 
     @Override
+    public String getCode() {
+        return this.code;
+    }
+
+    @Override
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Override
+    public PhonePR getPhonePR() {
+        return currentPhonePR;
+    }
+
+    @Override
+    public void setPhonePR(PhonePR phonePR) {
+        this.currentPhonePR = phonePR;
+    }
+
+    @Override
     public List<PhonePR> getPhonePRList() {
         if (this.list == null) {
             this.list = PhonePR.getPRList();
+            this.currentPhonePR = this.list.get(0) == null ? null : this.list.get(0);
         }
         return this.list;
     }
