@@ -9,6 +9,8 @@ public interface ProofCodeViewPort {
 
     void initView(boolean isTrue, String phoneNumber);
 
-    void refreshTime(boolean isTrue,String time);
+    void refreshTime(boolean isTrue, String time);
+
+    void nextOperation(boolean isTrue, String message);
 
 }

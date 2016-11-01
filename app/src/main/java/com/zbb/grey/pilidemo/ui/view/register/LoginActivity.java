@@ -15,6 +15,7 @@ import com.zbb.grey.pilidemo.ui.widge.TintEditText;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import tools.ActivityTaskManager;
 
 import static com.zbb.grey.pilidemo.R.color.theme_color;
 import static com.zbb.grey.pilidemo.R.color.under_grey_line;
@@ -52,6 +53,7 @@ public class LoginActivity extends AppBaseActivity implements LoginViewPort, Tin
     @Override
     protected void setContentView() {
         setContentView(R.layout.activity_login);
+        ActivityTaskManager.getInstance().putActivity(TAG, this);
     }
 
     @Override
@@ -66,6 +68,13 @@ public class LoginActivity extends AppBaseActivity implements LoginViewPort, Tin
 
     @Override
     protected void bindEvent() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         loginUser.setOnFocusChangeListener(this);
         loginPassword.setOnFocusChangeListener(this);
 
@@ -118,7 +127,7 @@ public class LoginActivity extends AppBaseActivity implements LoginViewPort, Tin
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        ActivityTaskManager.getInstance().removeActivity(TAG);
     }
 
     @Override

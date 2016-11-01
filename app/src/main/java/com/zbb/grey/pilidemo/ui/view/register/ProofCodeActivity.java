@@ -14,6 +14,7 @@ import com.zbb.grey.pilidemo.ui.presenter.ProofCodePresenter;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import tools.ActivityTaskManager;
 
 /**
  * 校对验证码界面
@@ -39,6 +40,7 @@ public class ProofCodeActivity extends AppBaseActivity implements ProofCodeViewP
     @Override
     protected void setContentView() {
         setContentView(R.layout.activity_proof_code);
+        ActivityTaskManager.getInstance().putActivity(TAG, this);
     }
 
     @Override
@@ -54,6 +56,13 @@ public class ProofCodeActivity extends AppBaseActivity implements ProofCodeViewP
 
     @Override
     protected void bindEvent() {
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         mCodeInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -83,9 +92,21 @@ public class ProofCodeActivity extends AppBaseActivity implements ProofCodeViewP
                 proofCodePresenter.resendCode();
                 break;
             case R.id.item_next:
-
+                showProgressDialog(getString(R.string.opt_doing), false);
+                proofCodePresenter.verifyCode(mCodeInput.getText().toString());
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ActivityTaskManager.getInstance().removeActivity(TAG);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 
     @Override
@@ -103,6 +124,17 @@ public class ProofCodeActivity extends AppBaseActivity implements ProofCodeViewP
         mTimeCountDown.setText(time);
         mTimeCountDown.setEnabled(isTrue);
         mTimeCountDown.setClickable(isTrue);
+    }
+
+    @Override
+    public void nextOperation(boolean isTrue, String message) {
+        dismissProgressDialog();
+        if (isTrue) {
+            proofCodePresenter.shopDownTimer();
+            openActivityWithBundle(SetPasswordActivity.class, null);
+        } else {
+            showToast(message);
+        }
     }
 
 }

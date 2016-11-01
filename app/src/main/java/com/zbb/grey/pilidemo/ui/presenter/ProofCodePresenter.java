@@ -2,6 +2,7 @@ package com.zbb.grey.pilidemo.ui.presenter;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 
 import com.zbb.grey.pilidemo.constant.BundleConstant;
 import com.zbb.grey.pilidemo.ui.model.ProofCodeCodeModel;
@@ -42,8 +43,34 @@ public class ProofCodePresenter {
         }
     }
 
+    /**
+     * 重新获取验证码
+     */
     public void resendCode() {
+        //模拟
         downTimer.start();
+    }
+
+    /**
+     * 校验手机验证码
+     *
+     * @param code 验证码
+     */
+    public void verifyCode(final String code) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (code.equals("1234")) {
+                    proofCodeViewPort.nextOperation(true, "");
+                } else {
+                    proofCodeViewPort.nextOperation(false, "验证码错误,请重新输入");
+                }
+            }
+        }, 1500);
+    }
+
+    public void shopDownTimer() {
+        downTimer.cancel();
     }
 
     /**

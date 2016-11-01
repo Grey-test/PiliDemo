@@ -35,6 +35,8 @@
     <string name="toolbar_game">游戏中心</string>
     <string name="toolbar_clear">清空</string>
     <string name="cancel">取消</string>
+    <string name="next">下一步</string>
+    <string name="skip_error">数据有误...即将退出...</string>
 
     <!-- login in -->
     <string name="login_toolbar_title">登录</string>
@@ -44,6 +46,7 @@
     <string name="user_password">请输入密码</string>
     <string name="toolbar_forget">忘记密码?</string>
     <string name="opt_logining">登录中...</string>
+    <string name="opt_doing">正在操作...请稍后...</string>
 
     <!-- register account -->
     <string name="register_toolbar_name">注册帐号</string>
@@ -57,8 +60,17 @@
     <string name="proof_code_toolbar_name">验证手机号</string>
     <string name="proof_rules_tip">验证码已发送到以下手机，请在5分钟内完成注册</string>
     <string name="proof_input_code">请输入验证码</string>
-    <string name="next">下一步</string>
-    <string name="skip_error">数据有误...即将退出...</string>
+
+    <!-- set password/userInfo-->
+    <string name="set_password_tip">设置密码后，你就可以使用手机登录bilibili</string>
+    <string name="set_password_psw">密码</string>
+    <string name="set_password_psw_hint">6-16个字符以内，区分大小写</string>
+    <string name="set_password_confirm_psw">确认密码</string>
+    <string name="set_password_confirm_psw_hint">请再次输入</string>
+    <string name="set_password_name">昵称</string>
+    <string name="set_password_name_hint">3-30个字符以内</string>
+    <string name="complete">完成</string>
+    <string name="set_password_toolbar_name">设置密码</string>
 
 
 </resources>

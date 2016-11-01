@@ -21,6 +21,7 @@
 
     <!-- 字体 -->
     <color name="hint_tip_grey">#757575</color>
+    <color name="hint_tip_red">#dd1111</color>
     <color name="black_tf_3d">#333333</color>
     <color name="black_tf_6d">#666666</color>
     <color name="black_tf_9d">#999999</color>

@@ -23,6 +23,7 @@ import com.zbb.grey.pilidemo.ui.widge.BrightTextView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import tools.ActivityTaskManager;
 
 import static com.zbb.grey.pilidemo.R.id.toolbar;
 
@@ -60,6 +61,7 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
     @Override
     protected void setContentView() {
         setContentView(R.layout.activity_register);
+        ActivityTaskManager.getInstance().putActivity(TAG, this);
     }
 
     @Override
@@ -86,6 +88,14 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
 
     @Override
     protected void bindEvent() {
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
         mSingleCancel.setOnClickListener(this);
         mSingleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,6 +104,7 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
                 mSingleDialog.dismiss();
             }
         });
+
 
         mUsesPhone.addTextChangedListener(new TextWatcher() {
             @Override
@@ -121,6 +132,8 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
                 mSingleDialog.show();
                 break;
             case R.id.get_code:
+                mHintView.setText(getString(R.string.register_input_phone));
+                mHintView.setTextColor(getResources().getColor(R.color.black_tf_3d));
                 showProgressDialog("正在请求验证验...", true);
                 registerPresenter.getCode();
                 break;
@@ -128,6 +141,11 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
                 mSingleDialog.dismiss();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ActivityTaskManager.getInstance().removeActivity(TAG);
     }
 
     @Override
@@ -151,7 +169,8 @@ public class RegisterActivity extends AppBaseActivity implements RegisterViewPor
         if (TextUtils.isEmpty(message)) {
             openActivityWithBundle(ProofCodeActivity.class, bundle);
         } else {
-            showToast(message);
+            mHintView.setText(message);
+            mHintView.setTextColor(getResources().getColor(R.color.hint_tip_red));
         }
     }
 

@@ -88,7 +88,7 @@ public class RegisterPresenter {
                     registerViewPort.onCodeCallBack("该手机号码已注册", null);
                 }
             }
-        }, 3 * 1000);
+        }, 2 * 1000);
     }
 
 
