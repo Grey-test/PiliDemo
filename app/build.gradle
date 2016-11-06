@@ -52,4 +52,6 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile project(':jframework')
 
+//    compile 'com.lzy.widget:view-core:0.2.1'
+
 }

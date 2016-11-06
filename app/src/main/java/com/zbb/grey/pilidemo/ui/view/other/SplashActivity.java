@@ -9,7 +9,6 @@ import com.jstudio.utils.PreferencesUtils;
 import com.zbb.grey.pilidemo.R;
 import com.zbb.grey.pilidemo.base.AppBaseActivity;
 import com.zbb.grey.pilidemo.constant.AppConstant;
-import com.zbb.grey.pilidemo.ui.view.register.LoginActivity;
 
 
 /**
@@ -35,11 +34,12 @@ public class SplashActivity extends AppBaseActivity {
         PreferencesUtils preferences = PreferencesUtils.getInstance(this, AppConstant.APP_PREFERENCE);
         boolean isFirstLogin = preferences.getBoolean("APP_IS_FIRST_BOOT", false);
         JLog.d(TAG, "isFirstLogin =  " + isFirstLogin);
-        if (isFirstLogin) {
-            openActivity(new Intent(SplashActivity.this, GuidePageActivity.class));
-        } else {
-            openActivity(new Intent(SplashActivity.this, LoginActivity.class));
-        }
+//        if (isFirstLogin) {
+//            openActivity(new Intent(SplashActivity.this, GuidePageActivity.class));
+//        } else {
+//            openActivity(new Intent(SplashActivity.this, LoginActivity.class));
+//        }
+//        openActivity(new Intent(SplashActivity.this, TestViewActivity.class));
     }
 
     @Override
