@@ -38,6 +38,7 @@ public class ActivityTaskManager {
      */
     public Activity putActivity(String name, Activity activity) {
         return activityMap.put(name, activity);
+        Log.d("tag","grey test other");
     }
 
     /**
