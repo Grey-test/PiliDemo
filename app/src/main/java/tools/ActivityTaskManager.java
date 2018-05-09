@@ -25,6 +25,8 @@ public class ActivityTaskManager {
     public static synchronized ActivityTaskManager getInstance() {
         if (activityTaskManager == null) {
             activityTaskManager = new ActivityTaskManager();
+        }else{
+            Log.d("tag","grey master test");
         }
         return activityTaskManager;
     }
