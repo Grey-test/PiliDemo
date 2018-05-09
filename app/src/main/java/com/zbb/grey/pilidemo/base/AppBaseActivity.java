@@ -60,6 +60,7 @@ public abstract class AppBaseActivity extends BaseAppCompatActivity {
             JLog.e(TAG, CommonApplication.class.getSimpleName() + "not initialize");
             return;
         }
+        Log.d("tag","zhu fen zhi test");
         snackToast.setText(message);
         snackToast.show();
     }
