@@ -1,6 +1,7 @@
 package tools;
 
 import android.app.Activity;
+import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -25,8 +26,8 @@ public class ActivityTaskManager {
     public static synchronized ActivityTaskManager getInstance() {
         if (activityTaskManager == null) {
             activityTaskManager = new ActivityTaskManager();
-        }else{
-            Log.d("tag","grey master test");
+        }else {
+            Log.d("tag","test test other");
         }
         return activityTaskManager;
     }
@@ -37,8 +38,8 @@ public class ActivityTaskManager {
      * @param activity
      */
     public Activity putActivity(String name, Activity activity) {
+        Log.d("tag","test test other");
         return activityMap.put(name, activity);
-        Log.d("tag","grey test other");
     }
 
     /**

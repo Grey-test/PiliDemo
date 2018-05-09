@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PiliDemo.iml" filepath="$PROJECT_DIR$/PiliDemo.iml" />
+      <module fileurl="file://F:\xingongshe\test\PiliDemo\PiliDemo.iml" filepath="F:\xingongshe\test\PiliDemo\PiliDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/jframework/jframework.iml" filepath="$PROJECT_DIR$/jframework/jframework.iml" />
     </modules>
